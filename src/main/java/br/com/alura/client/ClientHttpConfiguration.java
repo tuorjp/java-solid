@@ -19,13 +19,13 @@ public class ClientHttpConfiguration {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    public HttpResponse<String> dispararRequisicaoPost(String uri, JsonObject json) throws IOException, InterruptedException {
+    public HttpResponse<String> dispararRequisicaoPost(String uri, Object object) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .header("Content-Type", "application/json")
-                .method("POST", HttpRequest.BodyPublishers.ofString(json.toString()))
+                .method("POST", HttpRequest.BodyPublishers.ofString(object.toString()))
                 .build();
 
         return client.send(request, HttpResponse.BodyHandlers.ofString());
