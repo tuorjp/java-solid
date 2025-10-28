@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AbrigoService {
+
     private ClientHttpConfiguration client;
 
     public AbrigoService(ClientHttpConfiguration client) {
@@ -19,13 +20,10 @@ public class AbrigoService {
 
     public void listarAbrigo() throws IOException, InterruptedException {
         String uri = "http://localhost:8080/abrigos";
-
         HttpResponse<String> response = client.dispararRequisicaoGet(uri);
         String responseBody = response.body();
-
         Abrigo[] abrigos = new ObjectMapper().readValue(responseBody, Abrigo[].class);
         List<Abrigo> abrigoList = Arrays.stream(abrigos).toList();
-
         System.out.println("Abrigos cadastrados:");
         for (Abrigo abrigo : abrigoList) {
             long id = abrigo.getId();
@@ -45,9 +43,7 @@ public class AbrigoService {
         Abrigo abrigo = new Abrigo(nome, telefone, email);
 
         String uri = "http://localhost:8080/abrigos";
-
         HttpResponse<String> response = client.dispararRequisicaoPost(uri, abrigo);
-
         int statusCode = response.statusCode();
         String responseBody = response.body();
         if (statusCode == 200) {
