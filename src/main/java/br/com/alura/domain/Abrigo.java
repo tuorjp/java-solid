@@ -37,4 +37,8 @@ public class Abrigo {
     public Pet[] getPets() {
         return pets;
     }
+
+    public void setId(long l) {
+        this.id = l;
+    }
 }
